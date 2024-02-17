@@ -13,8 +13,10 @@ class BasicAuth(Auth):
     """ BasicAuth class
     This class inherits from Auth and serves as a basic authentication
     """
-    def extract_base64_authorization_header(self,
-                                            authorization_header: str) -> str:
+    def extract_base64_authorization_header(
+      self,
+      authorization_header: str
+    ) -> str:
         """
         Extract the Base64 value from a Base64 Authorization header
         This method returns the Base64 value of the Authorization header
@@ -28,9 +30,9 @@ class BasicAuth(Auth):
         token = authorization_header.split(" ")[-1]
         return token
 
-    def decode_base64_authorization_header(self,
-                                           base64_authorization_header:
-                                           str) -> str:
+    def decode_base64_authorization_header(
+      self, base64_authorization_header: str
+    ) -> str:
         """
         Method to decode a Base64 string and extract the user credentials
         """
@@ -45,9 +47,10 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    def extract_user_credentials(self,
-                                 decoded_base64_authorization_header:
-                                 str) -> Union[str, str]:
+    def extract_user_credentials(
+      self,
+      decoded_base64_authorization_header: str
+    ) -> Union[str, str]:
         """
         Returns user email and password from Base64 decoded value
         """
@@ -61,8 +64,10 @@ class BasicAuth(Auth):
         password = decoded_base64_authorization_header[len(email) + 1:]
         return (email, password)
 
-    def user_object_from_credentials(self, user_email: str,
-                                     user_pwd: str) -> TypeVar['User']:
+    def user_object_from_credentials(
+      self, user_email: str,
+      user_pwd: str
+    ) -> TypeVar['User']:
         """
         Get the User instance based on email and password
         If the user does not exist or the password is invalid, return None
