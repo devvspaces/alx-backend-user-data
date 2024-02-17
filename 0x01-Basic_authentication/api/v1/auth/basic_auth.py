@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Definition of class BasicAuth
+""" Definition of class BasicAuth
 """
 import base64
 from .auth import Auth
