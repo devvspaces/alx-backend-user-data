@@ -16,8 +16,13 @@ class BasicAuth(Auth):
       self,
       authorization_header: str
     ) -> str:
-        """ Extract the Base64 value from a Base64 Authorization header
-        This method returns the Base64 value of the Authorization header
+        """
+        Method to extract the Base64 value from the Authorization header
+
+        :param authorization_header: _description_
+        :type authorization_header: str
+        :return: _description_
+        :rtype: str
         """
         if authorization_header is None:
             return None
@@ -31,7 +36,13 @@ class BasicAuth(Auth):
     def decode_base64_authorization_header(
       self, base64_authorization_header: str
     ) -> str:
-        """ Method to decode a Base64 string and extract the user credentials
+        """
+        Method to decode a Base64 string
+
+        :param base64_authorization_header: _description_
+        :type base64_authorization_header: str
+        :return: _description_
+        :rtype: str
         """
         if base64_authorization_header is None:
             return None
@@ -48,7 +59,13 @@ class BasicAuth(Auth):
       self,
       decoded_base64_authorization_header: str
     ) -> Union[str, str]:
-        """ Returns user email and password from Base64 decoded value
+        """
+        Method to extract the email and password from a Base64 string
+
+        :param decoded_base64_authorization_header: _description_
+        :type decoded_base64_authorization_header: str
+        :return: _description_
+        :rtype: Union[str, str]
         """
         if decoded_base64_authorization_header is None:
             return (None, None)
@@ -64,9 +81,11 @@ class BasicAuth(Auth):
       self, user_email: str,
       user_pwd: str
     ) -> TypeVar['User']:
-        """ Get the User instance based on email and password
-        If the user does not exist or the password is invalid, return None
-        If everything is correct, return the User instance
+        """
+        Method to retrieve a User instance based on email and password
+
+        :return: _description_
+        :rtype: _type_
         """
         if user_email is None or not isinstance(user_email, str):
             return None
@@ -84,8 +103,11 @@ class BasicAuth(Auth):
             return None
 
     def current_user(self, request=None) -> TypeVar['User']:
-        """ Returns a User instance based on a received request
-        if and only if the request contains a valid Authorization header
+        """
+        Method to retrieve the current User instance
+
+        :return: _description_
+        :rtype: _type_
         """
         Auth_header = self.authorization_header(request)
         if Auth_header is not None:
